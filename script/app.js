@@ -13,8 +13,8 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
         };
         $scope.paint = {
           coverage:15,
-          tin_size:5
-        }
+          tin_size:2
+        };
         
         $scope.calculate = function(){
           /* update the area of the room based upon width and height. */
