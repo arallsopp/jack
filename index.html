@@ -55,6 +55,18 @@
         <input name="height" data-ng-model="room.height" data-ng-change="calculate()" type="number">
         <!-- the 'data-ng-model' attribute tells it what variable to follow -->
     </md-input-container>
+    <md-input-container flex>
+      <label>Number of standard single doors</label>
+      <input name="number_of_standard_single_doors" data-ng-model="room.doors" data-ng-change="calculate()" type="number">
+    </md-input-container>
+    </div>
+    
+    <div data-layout="row">
+      <md-input-container flex>
+        <label>Number of coats (Manufacturer's recommendation is usually 2)</label>
+        <input name="number_of_coats" data-ng-model="paint.number_of_coats" data-ng-change="calculate()" type="number">
+      </md-input-container>
+      
     </div>
     <div data-layout="column" data-ng-if="room.area">
         <p>Your wall measuring {{room.height}}m x {{room.width}}m is {{room.area}}sqm.

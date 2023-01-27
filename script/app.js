@@ -9,11 +9,13 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
             width:null,
             height:null,
             area:null,
-            tins:null
+            tins:null,
+            doors:null
         };
         $scope.paint = {
           coverage:15,
-          tin_size:2
+          tin_size:2,
+          number_of_coats:null
         };
         /* scope.paints is not used, but is provided as an example of an array of values. */
         $scope.paints = [
@@ -31,9 +33,10 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
         
         $scope.calculate = function(){
           /* update the area of the room based upon width and height. */
-          $scope.room.area = $scope.room.width * $scope.room.height;
+          let area_of_doors=$scope.room.doors*1.981*0.762;
+          $scope.room.area=$scope.room.width*$scope.room.height-area_of_doors;
           let total_coverage_per_tin=$scope.paint.coverage * $scope.paint.tin_size;
-          $scope.room.tins= total_coverage_per_tin/$scope.room.area;
+          $scope.room.tins=($scope.room.area/total_coverage_per_tin)*$scope.paint.number_of_coats;
         
           console.log($scope.room);
         }
