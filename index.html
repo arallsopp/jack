@@ -43,16 +43,17 @@
     <div data-layout="row">
     <md-input-container flex>
         <label>Width</label>
-        <input name="width" data-ng-model="room.width" type="number">
+        <input name="width" data-ng-model="room.width" data-ng-change="calculate()" type="number">
         <!-- the 'data-ng-model' attribute tells it what variable to follow -->
     </md-input-container>
     <md-input-container flex>
         <label>Height</label>
-        <input name="height" data-ng-model="room.height" type="number">
+        <input name="height" data-ng-model="room.height" data-ng-change="calculate()" type="number">
         <!-- the 'data-ng-model' attribute tells it what variable to follow -->
     </md-input-container>
-    <md-button data-ng-click="calculate()">Calc</md-button>
-    {{room.area}}
+    </div>
+    <div data-layout="column" data-ng-if="room.area">
+        <p>Your wall measuring {{room.height}} x {{room.width}} is {{room.area}}sq.
     </div>
 
 </div>
