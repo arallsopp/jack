@@ -15,6 +15,19 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
           coverage:15,
           tin_size:2
         };
+        /* scope.paints is not used, but is provided as an example of an array of values. */
+        $scope.paints = [
+            {manufacturer: "dulux",
+             coverage_per_l: 15,
+             small_tin_size:1,
+             big_tin_size:5
+            },
+            {manufacturer: "crown",
+             coverage_per_l: 12,
+             small_tin_size:1,
+             big_tin_size:5
+            }
+        ]
         
         $scope.calculate = function(){
           /* update the area of the room based upon width and height. */
