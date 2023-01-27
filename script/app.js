@@ -8,7 +8,8 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
         };
         $scope.room = {
             width:null,
-            height:null
+            height:null,
+            area:null
         }
     }
 ]);
