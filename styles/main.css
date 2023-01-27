@@ -14,3 +14,9 @@
     width: 229px;
     background-size: cover;
 }
+
+h1,h2,h3{
+    /* use brewers font for headings */
+    font-family:Arimo, sans-serif;
+    font-weight: 400;
+}
