@@ -5,6 +5,9 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
         $scope.user = {
             name:''// this gets bound to the text box.
         };
+        $scope.ux = {
+            doors:[0,1,2,3,4,5] /* this is used for the ng-repeat drop down */
+        }
         $scope.room = {
             width:null,
             height:null,

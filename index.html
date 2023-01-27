@@ -55,9 +55,17 @@
         <input name="height" data-ng-model="room.height" data-ng-change="calculate()" type="number">
         <!-- the 'data-ng-model' attribute tells it what variable to follow -->
     </md-input-container>
+
     <md-input-container flex>
       <label>Number of standard single doors</label>
-      <input name="number_of_standard_single_doors" data-ng-model="room.doors" data-ng-change="calculate()" type="number">
+            <md-select ng-model="room.doors" data-ng-change="calculate()">
+                <md-option ng-repeat="d in ux.doors" ng-value="d">
+                    {{d}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+
+        <input name="number_of_standard_single_doors" data-ng-model="room.doors" data-ng-change="calculate()" type="number">
     </md-input-container>
     </div>
     
