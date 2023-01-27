@@ -31,10 +31,13 @@
     <h3>Hey Jack, here's a quick starter page for you.</h3>
     <md-input-container>
         <label>Your name</label>
-        <input name="username" ng-model="user.name" type="text">
+        <input name="username" data-ng-model="user.name" type="text">
+        <!-- the 'data-ng-model' attribute tells it what variable to follow -->
     </md-input-container>
     <div>
         <p data-ng-if="user.name">Hello {{user.name}}</p>
+        <!-- the data-ng-if means it won't show up if there isn't a user.name set -->
+        <!-- the double brace tells angular to insert the variable contents into the page -->
     </div>
 </div>
 </body>
