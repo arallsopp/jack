@@ -8,12 +8,20 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
         $scope.room = {
             width:null,
             height:null,
-            area:null
+            area:null,
+            tins:null
         };
+        $scope.paint = {
+          coverage:15,
+          tin_size:5
+        }
         
         $scope.calculate = function(){
           /* update the area of the room based upon width and height. */
           $scope.room.area = $scope.room.width * $scope.room.height;
+          let total_coverage_per_tin=$scope.paint.coverage*$scope.paint.tin_size;
+          $scope.room.tins= total_coverage_per_tin/$scope.room.area;
+        
           console.log($scope.room);
         }
     }
