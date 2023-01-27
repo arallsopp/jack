@@ -59,8 +59,8 @@
         <md-input-container flex>
             <label>Number of standard single doors</label>
             <md-select ng-model="room.doors" data-ng-change="calculate()">
-                <md-option ng-repeat="d in ux.doors" ng-value="d">
-                    {{d}}
+                <md-option ng-repeat="d in ux.doors" data-ng-value="d.value">
+                    {{d.label}}
                 </md-option>
             </md-select>
         </md-input-container>
