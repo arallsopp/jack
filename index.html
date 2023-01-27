@@ -98,7 +98,24 @@
     <p data-ng-repeat="p in paints">
         {{p.manufacturer}} big tin size is {{p.big_tin_size}}
     </p>
+</div>
 
+<div data-layout="column">
+    <p>this is just an example of how you could feed variables into the formula</p>
+    <md-input-container flex>
+        <label>Choose a paint</label>
+        <md-select ng-model="user.selected_paint">
+            <md-option ng-repeat="p in ux.paints" data-ng-value="p">
+                {{p.manufacturer}}
+            </md-option>
+        </md-select>
+    </md-input-container>
+    <p>
+        You have chosen {{user.selected_paint.manufacturer}} which has a price bracket of
+        {{user.selected_paint.price_bracket}} and covers {{user.selected_paint.coverage_per_l}} sqm per litre.
+        {{user.selected_paint.manufacturer}} recommends you apply {{user.selected_paint.recommended_coats}} coats.
+    </p>
+    <p>You could feed those directly into the calculation using $scope.user.selected_paint.recommended_coats</p>
 </div>
 </body>
 </html>
