@@ -58,6 +58,9 @@
         <p>This will require {{room.tins}} {{paint.tin_size}}lt tins.
         </p>
     </div>
+    <p data-ng-repeat="p in paints">
+        {{p.manufacturer}} big tin size is {{p.big_tin_size}}
+    </p>
 
 </div>
 </body>

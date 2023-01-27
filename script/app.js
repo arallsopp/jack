@@ -25,14 +25,14 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
             {manufacturer: "crown",
              coverage_per_l: 12,
              small_tin_size:1,
-             big_tin_size:5
+             big_tin_size:10
             }
         ]
         
         $scope.calculate = function(){
           /* update the area of the room based upon width and height. */
           $scope.room.area = $scope.room.width * $scope.room.height;
-          let total_coverage_per_tin=$scope.paint.coverage*$scope.paint.tin_size;
+          let total_coverage_per_tin=$scope.paint.coverage * $scope.paint.tin_size;
           $scope.room.tins= total_coverage_per_tin/$scope.room.area;
         
           console.log($scope.room);
