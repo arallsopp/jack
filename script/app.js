@@ -6,7 +6,15 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
             name:''// this gets bound to the text box.
         };
         $scope.ux = {
-            doors:[0,1,2,3,4,5], /* this is used for the ng-repeat drop down */
+            doors: [
+                {value: 0, label: 'none'},
+                {value: 1, label: 'one'},
+                {value: 2, label: 'two'},
+                {value: 3, label: 'three'},
+                {value: 4, label: 'four'},
+                {value: 5, label: 'five'}
+            ], /* this is used for the ng-repeat drop down */
+
             max_wall_length:800, /* this sets the max size in the range control */
             min_wall_length:150  /* this sets the min size in the range control */
         }
