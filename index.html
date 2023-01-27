@@ -31,7 +31,7 @@
 <div class="website-header">
     <div class="logo"></div>
 </div>
-<div data-layout="column">
+<div class="md-padding" data-layout="column">
     <h1>Hey Jack, here's a quick starter page for you.</h1>
     <md-input-container>
         <label>Your name</label>
@@ -44,7 +44,7 @@
         <!-- the double brace tells angular to insert the variable contents into the page -->
     </div>
 
-    <div data-layout="row">
+    <div data-layout="column" data-layout-gt-xs="row">
     <md-input-container flex>
         <label>Width (m)</label>
         <input name="width" data-ng-model="room.width" data-ng-change="calculate()" type="number">
