@@ -34,8 +34,7 @@
 <div class="md-padding" data-layout="column">
     <h1>Hey Jack, here's a quick starter page for you.</h1>
     <md-input-container>
-        <label>Your name</label>
-        <input name="username" data-ng-model="user.name" type="text">
+        <label>Your name</label> <input name="username" data-ng-model="user.name" type="text">
         <!-- the 'data-ng-model' attribute tells it what variable to follow -->
     </md-input-container>
     <div>
@@ -45,36 +44,49 @@
     </div>
 
     <div data-layout="column" data-layout-gt-xs="row">
-    <md-input-container flex>
-        <label>Width (m)</label>
-        <input name="width" data-ng-model="room.width" data-ng-change="calculate()" type="number">
-        <!-- the 'data-ng-model' attribute tells it what variable to follow -->
-    </md-input-container>
-    <md-input-container flex>
-        <label>Height (m)</label>
-        <input name="height" data-ng-model="room.height" data-ng-change="calculate()" type="number">
-        <!-- the 'data-ng-model' attribute tells it what variable to follow -->
-    </md-input-container>
+        <md-input-container flex>
+            <label>Width (m)</label> <input name="width" data-ng-model="room.width" data-ng-change="calculate()"
+                                            type="number">
+            <!-- the 'data-ng-model' attribute tells it what variable to follow -->
+        </md-input-container>
+        <md-input-container flex>
+            <label>Height (m)</label> <input name="height" data-ng-model="room.height" data-ng-change="calculate()"
+                                             type="number">
+            <!-- the 'data-ng-model' attribute tells it what variable to follow -->
+        </md-input-container>
 
-    <md-input-container flex>
-      <label>Number of standard single doors</label>
+
+        <md-input-container flex>
+            <label>Number of standard single doors</label>
             <md-select ng-model="room.doors" data-ng-change="calculate()">
                 <md-option ng-repeat="d in ux.doors" ng-value="d">
                     {{d}}
                 </md-option>
             </md-select>
         </md-input-container>
-
-        <input name="number_of_standard_single_doors" data-ng-model="room.doors" data-ng-change="calculate()" type="number">
-    </md-input-container>
     </div>
-    
+
+    <div>
+        <md-slider-container>
+            <span>Width (cms)</span>
+            <md-slider flex min="{{ux.min_wall_length}}" max="{{ux.max_wall_length}}" data-ng-model="room.width"
+                       aria-label="room width"
+                       id="room_width">
+            </md-slider>
+            <md-input-container>
+                <input flex type="number" data-ng-model="room.width" aria-label="room width" aria-controls="room_width">
+            </md-input-container>
+        </md-slider-container>
+    </div>
+
     <div data-layout="row">
-      <md-input-container flex>
-        <label>Number of coats (Manufacturer's recommendation is usually 2)</label>
-        <input name="number_of_coats" data-ng-model="paint.number_of_coats" data-ng-change="calculate()" type="number">
-      </md-input-container>
-      
+        <md-input-container flex>
+            <label>Number of coats (Manufacturer's recommendation is usually 2)</label> <input name="number_of_coats"
+                                                                                               data-ng-model="paint.number_of_coats"
+                                                                                               data-ng-change="calculate()"
+                                                                                               type="number">
+        </md-input-container>
+
     </div>
     <div data-layout="column" data-ng-if="room.area">
         <p>Your wall measuring {{room.height}}m x {{room.width}}m is {{room.area}}sqm.
