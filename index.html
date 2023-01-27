@@ -40,16 +40,19 @@
         <!-- the double brace tells angular to insert the variable contents into the page -->
     </div>
 
-    <md-input-container>
+    <div data-layout="row">
+    <md-input-container flex>
         <label>Width</label>
         <input name="width" data-ng-model="room.width" type="number">
         <!-- the 'data-ng-model' attribute tells it what variable to follow -->
     </md-input-container>
-    <md-input-container>
+    <md-input-container flex>
         <label>Height</label>
         <input name="height" data-ng-model="room.height" type="number">
         <!-- the 'data-ng-model' attribute tells it what variable to follow -->
     </md-input-container>
+    <md-button data-ng-click="calculate()">Calc</md-button>
+    </div>
 
 </div>
 </body>
