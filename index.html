@@ -28,7 +28,7 @@
 </head>
 <body>
 <div data-layout="column">
-    <h3>Hey Jack, here's a quick starter page for you.</h3>
+    <h1>Hey Jack, here's a quick starter page for you.</h1>
     <md-input-container>
         <label>Your name</label>
         <input name="username" data-ng-model="user.name" type="text">
@@ -39,6 +39,18 @@
         <!-- the data-ng-if means it won't show up if there isn't a user.name set -->
         <!-- the double brace tells angular to insert the variable contents into the page -->
     </div>
+
+    <md-input-container>
+        <label>Width</label>
+        <input name="width" data-ng-model="room.width" type="number">
+        <!-- the 'data-ng-model' attribute tells it what variable to follow -->
+    </md-input-container>
+    <md-input-container>
+        <label>Height</label>
+        <input name="height" data-ng-model="room.height" type="number">
+        <!-- the 'data-ng-model' attribute tells it what variable to follow -->
+    </md-input-container>
+
 </div>
 </body>
 </html>
