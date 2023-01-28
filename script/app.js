@@ -62,7 +62,8 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
             let area_of_doors = $scope.room.doors * 1.981 * 0.762;
             $scope.room.area = ($scope.room.width / 100) * $scope.room.height - area_of_doors;
             let total_coverage_per_tin = $scope.paint.coverage * $scope.paint.tin_size;
-            $scope.room.tins = ($scope.room.area / total_coverage_per_tin) * $scope.paint.number_of_coats;
+            let $scope.paint.number_of_coats = $scope.user.selected_paint.recommended_coats;
+            $scope.room.tins = ($scope.room.area / total_coverage_per_tin) * $scope.paint.number_of_coats
 
             console.log($scope.room);
         }

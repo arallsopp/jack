@@ -82,8 +82,8 @@
 
     <div data-layout="row">
         <md-input-container flex>
-            <label>Number of coats (Manufacturer's recommendation is usually 2)</label> <input name="number_of_coats"
-                                                                                               data-ng-model="paint.number_of_coats"
+            <label>Manufacturer's recommended number of coats</label> <input name="number_of_coats"
+                                                                                               data-ng-model="user.selected_paint.recommended_coats"
                                                                                                data-ng-change="calculate()"
                                                                                                type="number">
         </md-input-container>
