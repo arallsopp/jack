@@ -24,7 +24,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-sanitize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-route.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
-    <link href='//fonts.googleapis.com/css?family=Arimo:700,400,700italic,400italic|Karla:400,400italic,700italic,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Arimo:700,400,700italic,400italic|Karla:400,400italic,700italic,700'
+          rel='stylesheet' type='text/css'>
     <script src="script/app.js"></script>
     <link href="styles/main.css" rel="stylesheet"/>
 </head>
@@ -34,82 +35,106 @@
 </div>
 <div class="md-padding" data-layout="column">
     <h1>Jack's Paint Estimator</h1>
-    <md-input-container>
-        <label>Your name</label> <input name="username" data-ng-model="user.name" type="text">
-        <!-- the 'data-ng-model' attribute tells it what variable to follow -->
-    </md-input-container>
-    <div>
-        <p data-ng-if="user.name">Hello there, {{user.name}}</p>
-        <!-- the data-ng-if means it won't show up if there isn't a user.name set -->
-        <!-- the double brace tells angular to insert the variable contents into the page -->
-    </div>
+    <p>Type your instructions here...</p>
 
-    <div data-layout="column" data-layout-gt-xs="row">
-        <md-input-container flex>
-            <label>Width (cm)</label> <input name="width" data-ng-model="room.width" data-ng-change="calculate()"
-                                            type="number">
-            <!-- the 'data-ng-model' attribute tells it what variable to follow -->
-        </md-input-container>
-        <md-input-container flex>
-            <label>Height (m)</label> <input name="height" data-ng-model="room.height" data-ng-change="calculate()"
-                                             type="number">
-            <!-- the 'data-ng-model' attribute tells it what variable to follow -->
-        </md-input-container>
+    <!-- start the form -->
+    <md-card>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Wall</span> <span
+                    class="md-subhead">Tell us about the wall you want to paint</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <div data-layout="column" data-layout-gt-xs="row">
 
+                <md-slider-container flex>
+                    <span>Width
+                        <span data-hide data-show-gt-xs>(cms)</span>
+                        <small data-hide data-show-xs>{{room.width / 100}}m</small>
+                    </span>
+                    <md-slider flex min="{{ux.min_wall_length}}" max="{{ux.max_wall_length}}" data-ng-model="room.width"
+                               aria-label="room width" data-ng-change="calculate()"
+                               id="room_width">
+                    </md-slider>
+                    <md-input-container data-hide data-show-gt-xs>
+                        <input flex type="number" data-ng-model="room.width" aria-label="room width"
+                               aria-controls="room_width">
+                    </md-input-container>
+                </md-slider-container>
 
-        <md-input-container flex>
-            <label>Number of standard single doors</label>
-            <md-select ng-model="room.doors" data-ng-change="calculate()">
-                <md-option ng-repeat="d in ux.doors" data-ng-value="d.value">
-                    {{d.label}}
-                </md-option>
-            </md-select>
-        </md-input-container>
-    </div>
+                <md-input-container flex>
+                    <label>Height (m)</label> <input name="height" data-ng-model="room.height"
+                                                     data-ng-change="calculate()"
+                                                     type="number">
+                    <!-- the 'data-ng-model' attribute tells it what variable to follow -->
+                </md-input-container>
+            </div>
+            <div data-layout="column" data-layout-gt-xs="row">
+                <md-input-container flex>
+                    <label>Number of standard single doors</label>
+                    <md-select ng-model="room.doors" data-ng-change="calculate()">
+                        <md-option ng-repeat="d in ux.doors" data-ng-value="d.value">
+                            {{d.label}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex>
+                    <small>space left here for window count</small>
+                </md-input-container>
+            </div>
+        </md-card-content>
+    </md-card>
+    <md-card>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Your Paint selection</span> <span class="md-subhead">Choose a paint range to see your calculation</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <div data-layout="row">
+                <md-input-container flex>
+                    <label>Choose a paint</label>
+                    <md-select ng-model="user.selected_paint" data-ng-change="calculate()">
+                        <md-option ng-repeat="p in ux.paints" data-ng-value="p">
+                            {{p.manufacturer}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
 
-    <div>
-        <md-slider-container>
-            <span>Width (cms)</span>
-            <md-slider flex min="{{ux.min_wall_length}}" max="{{ux.max_wall_length}}" data-ng-model="room.width"
-                       aria-label="room width" data-ng-change="calculate()"
-                       id="room_width">
-            </md-slider>
-            <md-input-container>
-                <input flex type="number" data-ng-model="room.width" aria-label="room width" aria-controls="room_width">
-            </md-input-container>
-        </md-slider-container>
-    </div>
+                <md-input-container flex>
+                    <label>Manufacturer's recommended number of coats</label> <input name="number_of_coats"
+                                                                                     data-ng-model="user.selected_paint.recommended_coats"
+                                                                                     data-ng-change="calculate()"
+                                                                                     type="number">
+                </md-input-container>
+            </div>
+        </md-card-content>
+    </md-card>
 
-    <div data-layout="row">
-        <md-input-container flex>
-            <label>Manufacturer's recommended number of coats</label> <input name="number_of_coats"
-                                                                                               data-ng-model="user.selected_paint.recommended_coats"
-                                                                                               data-ng-change="calculate()"
-                                                                                               type="number">
-        </md-input-container>
-
-    </div>
-    <div data-layout="column" data-ng-if="room.area">
-        <p>Your wall measuring {{room.height}}m x {{room.width / 100}}m is {{room.area}}sqm.
-        </p>
-        <p>This will require {{room.tins}} {{paint.tin_size}}lt tins.
-        </p>
-    </div>
-    <p data-ng-repeat="p in paints">
-        {{p.manufacturer}} big tin size is {{p.big_tin_size}}
-    </p>
+    <md-card data-ng-if="room.area">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Your results</span> <span
+                    class="md-subhead">Please remember all walls vary</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <div data-layout="column" data-ng-if="room.area">
+                <p>Your wall measuring {{room.height}}m x {{room.width / 100}}m is {{room.area}}sqm.
+                </p>
+                <p>This will require {{room.tins}} {{paint.tin_size}}lt tins.
+                </p>
+            </div>
+        </md-card-content>
+    </md-card>
 </div>
 
 <section data-layout="column" class="md-padding">
-    <p>this is just an example of how you could feed variables into the formula</p>
-    <md-input-container flex>
-        <label>Choose a paint</label>
-        <md-select ng-model="user.selected_paint" data-ng-change="calculate()">
-            <md-option ng-repeat="p in ux.paints" data-ng-value="p">
-                {{p.manufacturer}}
-            </md-option>
-        </md-select>
-    </md-input-container>
+    <h3>Example stuff</h3>
+    <p data-ng-repeat="p in paints">
+        {{p.manufacturer}} big tin size is {{p.big_tin_size}}
+    </p>
     <p>
         You have chosen {{user.selected_paint.manufacturer}} which has a price bracket of
         {{user.selected_paint.price_bracket}} and covers {{user.selected_paint.coverage_per_l}} sqm per litre.
