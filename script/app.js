@@ -58,14 +58,17 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
         };
 
         $scope.calculate = function () {
-            /* update the area of the room based upon width and height. */
-            let area_of_doors = $scope.room.doors * 1.981 * 0.762;
-            $scope.room.area = ($scope.room.width / 100) * $scope.room.height - area_of_doors;
-            let total_coverage_per_tin = $scope.paint.coverage * $scope.paint.tin_size;
-            let $scope.paint.number_of_coats = $scope.user.selected_paint.recommended_coats;
-            $scope.room.tins = ($scope.room.area / total_coverage_per_tin) * $scope.paint.number_of_coats
-
-            console.log($scope.room);
+            if($scope.user.selected_paint) {
+                /* update the area of the room based upon width and height. */
+                let area_of_doors = $scope.room.doors * 1.981 * 0.762;
+                $scope.room.area = ($scope.room.width / 100) * $scope.room.height - area_of_doors;
+                let total_coverage_per_tin = $scope.paint.coverage * $scope.paint.tin_size;
+                $scope.paint.number_of_coats = $scope.user.selected_paint.recommended_coats;
+                $scope.room.tins = ($scope.room.area / total_coverage_per_tin) * $scope.paint.number_of_coats
+                console.log($scope.room);
+            }else{
+                console.log("You don't have a paint selected.")
+            }
         }
     }
 ]);

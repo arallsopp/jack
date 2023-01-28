@@ -71,7 +71,7 @@
         <md-slider-container>
             <span>Width (cms)</span>
             <md-slider flex min="{{ux.min_wall_length}}" max="{{ux.max_wall_length}}" data-ng-model="room.width"
-                       aria-label="room width"
+                       aria-label="room width" data-ng-change="calculate()"
                        id="room_width">
             </md-slider>
             <md-input-container>
@@ -104,7 +104,7 @@
     <p>this is just an example of how you could feed variables into the formula</p>
     <md-input-container flex>
         <label>Choose a paint</label>
-        <md-select ng-model="user.selected_paint">
+        <md-select ng-model="user.selected_paint" data-ng-change="calculate()">
             <md-option ng-repeat="p in ux.paints" data-ng-value="p">
                 {{p.manufacturer}}
             </md-option>
