@@ -20,3 +20,6 @@ h1,h2,h3{
     font-family:Arimo, sans-serif;
     font-weight: 400;
 }
+section:nth-of-type(even){
+    background: #f8f8f8;
+}

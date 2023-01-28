@@ -31,6 +31,15 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
                     coverage_per_l: 12,
                     recommended_coats:3
                 }
+            ],
+
+            faqs:[
+                {prompt:"Can you recommend two paints for a bathroom?",
+                 answer:"Yeah, we use Dulux and/or Crown"
+                },
+                {prompt:"How do I get the paint out of the tin onto the wall?",
+                 answer:"We find brushes and rollers give a good result"
+                }
             ]
         };
 

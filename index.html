@@ -100,7 +100,7 @@
     </p>
 </div>
 
-<div data-layout="column">
+<section data-layout="column" class="md-padding">
     <p>this is just an example of how you could feed variables into the formula</p>
     <md-input-container flex>
         <label>Choose a paint</label>
@@ -116,6 +116,15 @@
         {{user.selected_paint.manufacturer}} recommends you apply {{user.selected_paint.recommended_coats}} coats.
     </p>
     <p>You could feed those directly into the calculation using $scope.user.selected_paint.recommended_coats</p>
-</div>
+</section>
+
+<section class="md-padding">
+    <h1>FAQs</h1>
+    <div data-ng-repeat="f in ux.faqs">
+        <h3>{{f.prompt}}</h3>
+        <div>{{f.answer}}</div>
+        <hr/>
+    </div>
+</section>
 </body>
 </html>
