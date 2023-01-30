@@ -1,3 +1,5 @@
+/* this version of the script includes Andy's experiments. I'll summarise the changes as I go */
+
 var app = angular.module('myApp', ['ngSanitize', 'ngRoute', 'ngMaterial']);
 
 app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$location',
@@ -20,21 +22,11 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
             max_wall_length: 800, /* this sets the max size in the range control */
             min_wall_length: 150,  /* this sets the min size in the range control */
 
-            paints:[
+            paints:[    //this is only here for reference. The content gets overwritten by the import_stock function
                 {
-                    manufacturer: "Dulux",
+                    manufacturer: "Example",
                     price_bracket: 3,
                     coverage_per_l: 17,
-                    recommended_coats:2
-                }, {
-                    manufacturer: "Crown",
-                    price_bracket: 2,
-                    coverage_per_l: 15,
-                    recommended_coats:3
-                }, {
-                    manufacturer: "Farrow and Ball",
-                    price_bracket: 5,
-                    coverage_per_l: 13,
                     recommended_coats:2
                 }
             ],
@@ -49,6 +41,21 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
             ]
         };
 
+        $scope.import_stock = function(){
+            $http({
+                method: 'GET', // requests a resource from the web
+                url: 'data/stock.json' // our stock file in javsacript object notation.
+            }).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                // when the response is available
+                $scope.ux.paints = response.data;
+                console.log("Imported ", response.data.length, " paints from stock");
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                window.alert('problem loading stock!');
+            });
+        };
 
         $scope.room = {
             wall_width: null,
@@ -108,5 +115,9 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
                 console.log("You don't have a paint selected."); //calculation is pointless.
             }
         }
+
+
+        $scope.import_stock();
+
     }
 ]);
