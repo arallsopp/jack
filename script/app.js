@@ -75,6 +75,14 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
           
           
         //}
+        $scope.howto_iterate_windows = function(){
+            /* syntax to iterate over the windows defined for this room.
+            *  in reality, room.windows would probably be an array */
+            let example_area = 0;
+            for (let i = 1; i <= $scope.room.windows; i++){
+                console.log('do something with window', i);
+            }
+        };
         
         $scope.calculate = function () {
             /* Purpose: works out wall sizes, etc. Requires user has chosen a paint */
