@@ -82,19 +82,17 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
                 let area_of_doors = $scope.room.doors * 1.981 * 0.762;
                 $scope.room.wall_area = ($scope.room.wall_width / 100) * $scope.room.wall_height - area_of_doors; // minus area of all windows
                 var volume_required = $scope.room.wall_area/$scope.user.selected_paint.coverage_per_l; 
+
                 if (volume_required<1) {      //attempting to let the system work out which tin size is best for volume required
                   $scope.paint.tin_size = $scope.user.selected_paint.small_tin_size;
-                } else{
+                } else {
                     if (volume_required>1 && volume_required<2.5) {
                       $scope.paint.tin_size = $scope.user.selected_paint.mid_tin_size;
-                    }
-                      else{
+                    } else{
                         $scope.paint.tin_size = $scope.user.selected_paint.large_tin_size;
-                      }
-                  }
+                    }
                 }
-                
-                
+
                 let total_coverage_per_tin = $scope.user.selected_paint.coverage_per_l * $scope.paint.tin_size;
                 $scope.paint.number_of_coats = $scope.user.selected_paint.recommended_coats;
                 $scope.room.tins = ($scope.room.wall_area / total_coverage_per_tin) * $scope.paint.number_of_coats;
