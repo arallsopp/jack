@@ -53,6 +53,7 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
                 window.alert('problem loading stock!');
             });
         };
+
         $scope.import_faqs = function(){
             $http({
                 method: 'GET', // requests a resource from the web
@@ -69,6 +70,9 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
             });
         };
 
+        $scope.set_defaults = function(){
+            // think about creating some default values here.
+        };
 
         $scope.room = {
             wall_width: null,
@@ -127,11 +131,12 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
             }else{
                 console.log("You don't have a paint selected."); //calculation is pointless.
             }
-        }
+        };
 
 
         $scope.import_stock();
         $scope.import_faqs();
+        $scope.set_defaults();
 
 
     }
