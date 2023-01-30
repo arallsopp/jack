@@ -32,11 +32,8 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
             ],
 
             faqs:[
-                {prompt:"Can you recommend two paints for a bathroom?",
-                 answer:"Yeah, we use Dulux and/or Crown"
-                },
-                {prompt:"How do I get the paint out of the tin onto the wall?",
-                 answer:"We find brushes and rollers give a good result"
+                {prompt:"Example",
+                 answer:"Example"
                 }
             ]
         };
@@ -56,6 +53,22 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
                 window.alert('problem loading stock!');
             });
         };
+        $scope.import_faqs = function(){
+            $http({
+                method: 'GET', // requests a resource from the web
+                url: 'data/faqs.json' // our faqs file in javsacript object notation.
+            }).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                // when the response is available
+                $scope.ux.faqs = response.data;
+                console.log("Imported ", response.data.length, " faqs.");
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                window.alert('problem loading faqs!');
+            });
+        };
+
 
         $scope.room = {
             wall_width: null,
@@ -118,6 +131,8 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
 
 
         $scope.import_stock();
+        $scope.import_faqs();
+
 
     }
 ]);
