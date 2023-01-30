@@ -25,17 +25,26 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
                     manufacturer: "Dulux",
                     price_bracket: 3,
                     coverage_per_l: 17,
-                    recommended_coats:2
+                    recommended_coats:2,
+                    small_tin_size: 1,
+                    mid_tin_size: 2.5,
+                    large_tin_size: 5
                 }, {
                     manufacturer: "Crown",
                     price_bracket: 2,
                     coverage_per_l: 15,
-                    recommended_coats:3
+                    recommended_coats:3,
+                    small_tin_size: 1,
+                    mid_tin_size: 2.5,
+                    large_tin_size: 5
                 }, {
                     manufacturer: "Farrow and Ball",
                     price_bracket: 5,
                     coverage_per_l: 13,
-                    recommended_coats:2
+                    recommended_coats:2,
+                    small_tin_size: 1,
+                    mid_tin_size: 2.5,
+                    large_tin_size: 5
                 }
             ],
 
@@ -64,9 +73,6 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
         $scope.paint = {
             coverage: 15,
             tin_size:null,
-            small_tin_size: 1,
-            mid_tin_size: 2.5,
-            large_tin_size: 5,
             number_of_coats: null
         };
         
