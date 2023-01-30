@@ -22,20 +22,9 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
             max_wall_length: 800, /* this sets the max size in the range control */
             min_wall_length: 150,  /* this sets the min size in the range control */
 
-            paints:[    //this is only here for reference. The content gets overwritten by the import_stock function
-                {
-                    manufacturer: "Example",
-                    price_bracket: 3,
-                    coverage_per_l: 17,
-                    recommended_coats:2
-                }
-            ],
+            paints:[], //will be loaded from data/stock
+            faqs:[]    //will be loaded from data/faqs
 
-            faqs:[
-                {prompt:"Example",
-                 answer:"Example"
-                }
-            ]
         };
 
         $scope.import_stock = function(){
@@ -72,6 +61,11 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
 
         $scope.set_defaults = function(){
             // think about creating some default values here.
+            $scope.room.wall_width = 400;
+            $scope.room.wall_height = 2.1;
+            $scope.room.doors = 1;
+            $scope.room.windows = 1;
+
         };
 
         $scope.room = {
