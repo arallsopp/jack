@@ -53,18 +53,18 @@
                         <span data-hide data-show-gt-xs>(cms)</span>
                         <small data-hide data-show-xs>{{room.width / 100}}m</small>
                     </span>
-                    <md-slider flex min="{{ux.min_wall_length}}" max="{{ux.max_wall_length}}" data-ng-model="room.width"
+                    <md-slider flex min="{{ux.min_wall_length}}" max="{{ux.max_wall_length}}" data-ng-model="room.wall_width"
                                aria-label="room width" data-ng-change="calculate()"
                                id="room_width">
                     </md-slider>
                     <md-input-container data-hide data-show-gt-xs>
-                        <input flex type="number" data-ng-model="room.width" aria-label="room width"
+                        <input flex type="number" data-ng-model="room.wall_width" aria-label="room width"
                                aria-controls="room_width">
                     </md-input-container>
                 </md-slider-container>
 
                 <md-input-container flex>
-                    <label>Height (m)</label> <input name="height" data-ng-model="room.height"
+                    <label>Height (m)</label> <input name="height" data-ng-model="room.wall_height"
                                                      data-ng-change="calculate()"
                                                      type="number">
                     <!-- the 'data-ng-model' attribute tells it what variable to follow -->
@@ -80,11 +80,35 @@
                     </md-select>
                 </md-input-container>
                 <md-input-container flex>
-                    <small>space left here for window count</small>
+                    <label>Number of windows</label>
+                    <md-select ng-model="room.windows" data-ng-change="calculate()">
+                        <md-option ng-repeat="d in ux.doors" data-ng-value="d.value">
+                            {{d.label}}
+                        </md-option>
+                    </md-select>
                 </md-input-container>
             </div>
         </md-card-content>
     </md-card>
+    <!--<md-card>
+        <md-card-content>
+          
+                <md-input-container flex>
+                    <label>Window {{i}} height (m)</label> <input name="height" data-ng-model="room.windows_height"
+                                                     data-ng-change="calculate()"
+                                                     type="number">
+                    <!-- the 'data-ng-model' attribute tells it what variable to follow ******************-->
+               <!-- </md-input-container>
+                                              ***TRYING TO MAKE EXTRA PANELS FOR AMOUNT OF WINDOWS INPUTTED BY USER***
+                <md-input-container flex>
+                    <label>Window {{i}} width (m)</label> <input name="width" data-ng-model="room.windows_width"
+                                                     data-ng-change="calculate()"
+                                                     type="number">
+                    <!-- the 'data-ng-model' attribute tells it what variable to follow ******************-->
+                <!--</md-input-container>
+                
+        </md-card-content>
+    </md-card> -->
     <md-card>
         <md-card-title>
             <md-card-title-text>
@@ -112,7 +136,7 @@
         </md-card-content>
     </md-card>
 
-    <md-card data-ng-if="room.area">
+    <md-card data-ng-if="room.wall_area">
         <md-card-title>
             <md-card-title-text>
                 <span class="md-headline">Your results</span> <span
@@ -120,10 +144,10 @@
             </md-card-title-text>
         </md-card-title>
         <md-card-content>
-            <div data-layout="column" data-ng-if="room.area">
-                <p>Your wall measuring {{room.height}}m x {{room.width / 100}}m is {{room.area}}sqm.
+            <div data-layout="column" data-ng-if="room.wall_area">
+                <p>Your wall measuring {{room.wall_height}}m x {{room.wall_width / 100}}m is {{room.wall_area}}sqm.
                 </p>
-                <p>This will require {{room.tins}} {{paint.tin_size}}lt tins.
+                <p>This will require {{room.tins}} {{paint.tin_size}}lt tins. test {{room.wall_area}}
                 </p>
             </div>
         </md-card-content>
