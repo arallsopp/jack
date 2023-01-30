@@ -93,6 +93,13 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
           
           
         //}
+
+        $scope.update_wall_area = function(){
+            /* calculate the total wall area, and put it back into the scope.room.wall_area variable.
+               you only really need to call it when inputs change
+             */
+            $scope.room.wall_area = ($scope.room.wall_width / 100) * $scope.room.wall_heightl
+        };
         
         $scope.calculate = function () {
             /* Purpose: works out wall sizes, etc. Requires user has chosen a paint */
@@ -105,8 +112,10 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
             if($scope.user.selected_paint) {
 
                 /* update the area of the room based upon width and height. */
-                $scope.room.wall_area = ($scope.room.wall_width / 100) * $scope.room.wall_height - area_of_doors; // minus area of all windows
-                volume_required = $scope.room.wall_area/$scope.user.selected_paint.coverage_per_l;
+                $scope.update_wall_area();
+
+                $scope.room.painted_wall_area = $scope.room.wall_area - area_of_doors; // minus area of all windows
+                volume_required = $scope.room.painted_wall_area/$scope.user.selected_paint.coverage_per_l;
 
                 //attempting to let the system work out which tin size is best for volume required
                 if (volume_required < 1) {
