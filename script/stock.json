@@ -1,0 +1,20 @@
+[
+  {
+    "manufacturer": "Dulux",
+    "price_bracket": 3,
+    "coverage_per_l": 17,
+    "recommended_coats": 2
+  },
+  {
+    "manufacturer": "Crown",
+    "price_bracket": 2,
+    "coverage_per_l": 15,
+    "recommended_coats": 3
+  },
+  {
+    "manufacturer": "Farrow and Ball",
+    "price_bracket": 5,
+    "coverage_per_l": 13,
+    "recommended_coats": 2
+  }
+]
