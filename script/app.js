@@ -116,6 +116,7 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
             *  this is just an example.
             *  It does not consider price at all, and instead just tries to buy the least paint it can.
             */
+            console.log("%cBEGINNING TEST","font-weight:bold;margin-top:10px");
             console.log('Looking to cover ' + total_area_required + 'm2 with ' + paint.manufacturer + ' using ' + paint.sizes.length + ' sizes');
             let tins_used = [],litres_remaining, litres_required,
                 tins_i_can_use;
@@ -144,6 +145,7 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
                 litres_remaining = litres_remaining - paint.sizes[paint.sizes.length-1].litres;
             }
             console.log('  DONE:',tins_used);
+            return tins_used;
         };
 
         $scope.test_tin_sizes = function(){
@@ -154,7 +156,16 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
             $scope.find_tin_combos(46,$scope.ux.paints[1]);
             $scope.find_tin_combos(19,$scope.ux.paints[0]); //torture test designed to make it buy 2 small tins instead
 
-            window.alert('Check the console for your answers');
+            //quick test to see if the algorithm really works.
+            console.log('Testing against known nasty amounts');
+            let easy = $scope.find_tin_combos(150,$scope.ux.paints[1]); //its 1 big tin.
+            let hard = $scope.find_tin_combos(149,$scope.ux.paints[1]); //awkward remainders, should be 1 big tin.
+
+            if(easy.length !== hard.length){
+                window.alert('Ran the checks. Less than optimal algorithm used. Check console for output');
+            }else{
+                window.alert('Ran the checks. Could be good!');
+            }
         };
 
         $scope.calculate = function () {
