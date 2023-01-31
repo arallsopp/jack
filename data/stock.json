@@ -1,19 +1,62 @@
 [
   {
     "manufacturer": "Dulux",
-    "price_bracket": 3,
+    "sizes": [
+      {
+        "litres": 5,
+        "price": 20
+      },
+      {
+        "litres": 2.5,
+        "price": 12
+      },
+      {
+        "litres": 1,
+        "price": 7.50
+      }
+    ],
     "coverage_per_l": 17,
     "recommended_coats": 2
   },
   {
     "manufacturer": "Crown",
-    "price_bracket": 2,
+    "sizes": [
+      {
+        "litres": 10,
+        "price": 30
+      },
+      {
+        "litres": 5,
+        "price": 18
+      },
+      {
+        "litres": 2.5,
+        "price": 10
+      },
+      {
+        "litres": 1,
+        "price": 5.50
+      }
+    ],
     "coverage_per_l": 15,
     "recommended_coats": 3
   },
   {
     "manufacturer": "Farrow and Ball",
-    "price_bracket": 5,
+    "sizes": [
+      {
+        "litres": 5,
+        "price": 40
+      },
+      {
+        "litres": 2.5,
+        "price": 22
+      },
+      {
+        "litres": 1,
+        "price": 7.50
+      }
+    ],
     "coverage_per_l": 13,
     "recommended_coats": 2
   }
