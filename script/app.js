@@ -111,7 +111,52 @@ app.controller('myCtl', ['$scope', '$http', '$mdToast', '$mdDialog', '$sce', '$l
             return $scope.room.windows * 0.99 * 0.762; //todo: not all windows are actually the same size.
         };
 
-        
+        $scope.find_tin_combos = function(total_area_required, paint){
+            /* a standalone function to work out the best combination of paint sizes.
+            *  this is just an example.
+            *  It does not consider price at all, and instead just tries to buy the least paint it can.
+            */
+            console.log('Looking to cover ' + total_area_required + 'm2 with ' + paint.manufacturer + ' using ' + paint.sizes.length + ' sizes');
+            let tins_used = [],litres_remaining, litres_required,
+                tins_i_can_use;
+
+            litres_required = total_area_required / paint.coverage_per_l;
+            litres_remaining = litres_required;
+
+            console.log("  I need " + litres_required + "L of this paint to cover " + total_area_required + "m2");
+
+            //now check the tins to see how to reach that figure
+            for(let this_tin = 0;this_tin < paint.sizes.length; this_tin ++) {
+                console.log('  Checking tin', paint.sizes[this_tin]);
+
+                tins_i_can_use = Math.floor(litres_remaining / paint.sizes[this_tin].litres);
+                for (let i = 1; i <= tins_i_can_use; i++) {
+                    console.log('  - Adding ' + paint.sizes[this_tin].litres + 'L tin to my shopping list', paint.sizes[this_tin]);
+                    tins_used.push(paint.sizes[this_tin]);
+                    litres_remaining = litres_remaining - paint.sizes[this_tin].litres;
+                    console.log('    Got', litres_remaining, 'L left to find');
+                }
+            }
+            if(litres_remaining){
+                //at this point, you can only need less than the smallest tin, so add the last tin size
+                console.log('  Adding the smallest tin I can find to cover the remainder');
+                tins_used.push(paint.sizes[paint.sizes.length-1]);
+                litres_remaining = litres_remaining - paint.sizes[paint.sizes.length-1].litres;
+            }
+            console.log('  DONE:',tins_used);
+        };
+
+        $scope.test_tin_sizes = function(){
+            /* this function quickly tests the tin combo requirements for different manufacturers and amounts.
+            * The final call is a torture test designed to trick it into buying two 1L tins, when 1 x 2.5L would be cheaper
+            * You are welcome to refactor the find_tin_combos function to avoid this */
+            $scope.find_tin_combos(105,$scope.ux.paints[0]);
+            $scope.find_tin_combos(46,$scope.ux.paints[1]);
+            $scope.find_tin_combos(19,$scope.ux.paints[0]); //torture test designed to make it buy 2 small tins instead
+
+            window.alert('Check the console for your answers');
+        };
+
         $scope.calculate = function () {
             /* Purpose: works out wall sizes, etc. Requires user has chosen a paint */
 
